@@ -65,7 +65,8 @@ export async function POST(req: Request) {
             }
         });
 
-        return new StreamingTextResponse(stream);
+
+        return new StreamingTextResponse(stream)
 
     } catch (error) {
         console.log('Error in initializing the chat = ', error)
