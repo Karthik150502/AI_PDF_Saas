@@ -24,11 +24,7 @@ type Vector = {
 
 export const getPineconeClient = async () => {
     if (!pinecone) {
-        // pinecone = new PineconeClient()
-        // await pinecone.init({
-        //     enviornment: process.env.PINECONE_ENVIORNMENT!,
-        //     apiKey: process.env.PINECONE_API_KEY!
-        // })
+        
         pinecone = new Pinecone({
             apiKey: process.env.PINECONE_API_KEY!
         });

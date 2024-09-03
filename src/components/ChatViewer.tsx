@@ -32,7 +32,7 @@ export default function ChatViewer({ chatId, chats }: Props) {
     return (
         <div className='w-full h-screen pt-10 bg-white flex flex-col items-center'>
             <Link href="/" className=''>
-                <Button className='rounded-none font-extrabold text-xs'> <Plus size={18} strokeWidth='2' />Create Chat</Button>
+                <Button className='rounded-none font-extrabold text-xs'> <Plus size={18} strokeWidth='2' /></Button>
             </Link>
 
             <div className="flex flex-col mt-4 w-full">
