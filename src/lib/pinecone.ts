@@ -1,5 +1,5 @@
 
-import { PineconeClient, utils as PineconeUtils, Pinecone } from "@pinecone-database/pinecone"
+import { Pinecone } from "@pinecone-database/pinecone"
 
 
 import { downloadFromS3 } from "./s3-server";
@@ -8,10 +8,11 @@ import { Document, RecursiveCharacterTextSplitter } from "@pinecone-database/doc
 import { getEmbeddings } from "./embeddings";
 import md5 from "md5"
 import { convertToASCII, getChunks } from "./utils";
+import { PineconeRecord, RecordMetadata } from "@pinecone-database/pinecone";
 
 
 
-let pinecone: PineconeClient | Pinecone | null = null;
+let pinecone: Pinecone | null = null;
 type Vector = {
     id: string,
     values: number[],
@@ -22,9 +23,11 @@ type Vector = {
 }
 
 
+
+
 export const getPineconeClient = async () => {
     if (!pinecone) {
-        
+
         pinecone = new Pinecone({
             apiKey: process.env.PINECONE_API_KEY!
         });
@@ -85,12 +88,9 @@ export async function loadS3IntoPinecone(fileKey: string) {
 
     const chunkedVectors = getChunks(vectors, 10)
     for (const chunk of chunkedVectors) {
-        await pineconeIndex.namespace(namespace).upsert(chunk)
+        await pineconeIndex.namespace(namespace).upsert([chunk])
     }
-
-
     return documents[0]
-
 }
 
 
@@ -107,7 +107,7 @@ async function embedDocument(doc: Document) {
                 text: doc.metadata.text,
                 pageNumber: doc.metadata.pageNumber
             }
-        } as Vector
+        } as PineconeRecord<RecordMetadata>
         console.log(result)
         return result
     } catch (error) {

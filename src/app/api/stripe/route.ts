@@ -11,9 +11,9 @@ import { stripe } from "@/lib/stripe";
 const return_url = process.env.NEXT_BASE_URL + "/"
 
 export async function GET() {
+    const { userId } = await auth();
+    const user = await currentUser()
     try {
-        const { userId } = await auth();
-        const user = await currentUser()
         if (!userId) {
             return new NextResponse('unauthorized', { status: 401 })
         }

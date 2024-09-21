@@ -31,12 +31,14 @@ export async function POST(req: Request) {
             return new NextResponse("No user id present in the metadata", { status: 400 })
         }
 
+
+
         await db.insert(userSubscriptions).values({
-            userId: session.metadata.userId,
-            stripeSubscriptionId: subscription.id,
+            userId: session.metadata.userId as string,
+            stripeSubscriptionId: subscription.id as string,
             stripeCustomerId: subscription.customer as string,
-            stripePriceId: subscription.items.data[0].price.id,
-            stripeCurrentPeriod: new Date(subscription.current_period_end * 1000)
+            stripePriceId: subscription.items.data[0].price.id as string,
+            stripeCurrentPeriodEnd: new Date(subscription.current_period_end * 1000)
         })
     }
 
