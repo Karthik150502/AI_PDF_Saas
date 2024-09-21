@@ -19,7 +19,7 @@ export default function MessageList({ messages, isLoading }: Props) {
     }, [messages])
 
 
-    
+
     if (isLoading) {
         return <div className='absolute left-1/2 top-1/2 w-fit h-fit'>
             <Loading />

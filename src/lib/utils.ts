@@ -3,6 +3,7 @@ import { twMerge } from "tailwind-merge"
 import { db } from "./db";
 import { chat } from "./db/schema";
 import { eq } from "drizzle-orm";
+import { PineconeRecord, RecordMetadata } from "@pinecone-database/pinecone";
 
 
 
@@ -18,11 +19,12 @@ export function convertToASCII(s: string) {
   return asciiString;
 }
 
-export const getChunks = (array: object[], batchSize: number = 10) => {
-  const chunks = [];
+export const getChunks = (array: PineconeRecord<RecordMetadata>[], batchSize: number = 10) => {
+  const chunks: PineconeRecord<RecordMetadata>[] = [];
 
   for (let i = 0; i < array.length; i += batchSize) {
-    chunks.push(array.slice(i, i + batchSize));
+    // chunks.push(array.slice(i, i + batchSize));
+    chunks.push(array[i]);
   }
 
   return chunks;

@@ -1,0 +1,32 @@
+.img1 {
+    animation: img1 0.2s ease-in-out 5s;
+}
+
+.img2 {
+    animation: img2 0.2s ease-in-out 0.02s;
+}
+
+.img3 {
+    animation: img3 0.2s ease-in-out 0.02s;
+}
+
+.img4 {
+    animation: img4 0.2s ease-in-out 0.02s;
+}
+
+.img5 {
+    animation: img5 0.2s ease-in-out 0.02s;
+}
+
+
+@keyframes img1 {
+    from {
+        transform: translateX('-50px');
+        transform: translateY('-50px');
+    }
+
+    to {
+        transform: translateX('0px');
+        transform: translateY('0px');
+    }
+}

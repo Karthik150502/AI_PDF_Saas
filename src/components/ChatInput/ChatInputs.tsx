@@ -20,6 +20,7 @@ export default function ChatInputs({ chatId }: Props) {
         queryKey: ['chat', chatId],
         queryFn: async () => {
             const response = await axios.post<Message[]>('/api/get-messages', { chatId })
+            console.log(response)
             return response.data
         }
     })

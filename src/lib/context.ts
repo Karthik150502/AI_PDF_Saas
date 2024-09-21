@@ -1,4 +1,4 @@
-import { Pinecone, PineconeClient } from "@pinecone-database/pinecone";
+import { Pinecone } from "@pinecone-database/pinecone";
 import { convertToASCII } from "./utils";
 import { getEmbeddings } from "./embeddings";
 import { db } from "./db";
